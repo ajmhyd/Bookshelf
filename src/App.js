@@ -6,6 +6,7 @@ import './App.css'
 import ListBooks from './ListBooks'
 
 class BooksApp extends Component {
+
   state = {
     books: [],
   }
@@ -21,7 +22,9 @@ class BooksApp extends Component {
 
     return (
       <div className="app">
+      <Route exact path='/' render={() => (
         <ListBooks books={books} />
+      )}/>
         <Route exact path="/search" render={() => (
         <Search />
         )}/>

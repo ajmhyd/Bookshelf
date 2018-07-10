@@ -1,44 +1,35 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
-import ListBooks from './ListBooks'
 import './App.css'
+import Shelf from './Shelf'
 
 class Search extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     state = {
         books: [],
-        query: ''
-      }
+        query: '',
+        empty: false
+    }
 
-      updateQuery = (query) => {
+    updateQuery = (query) => {
         this.setState({ query: query.trim() })
-        this.onSearch(query);
-      }
 
-      clearQuery = () => {
-        this.setState({ query: ''})
-      }
-
-      onSearch = (query) => {
-        BooksAPI.search(query).then((books) => {
-            this.setState({
-                books: books
+        if(query) {
+            BooksAPI.search(query).then((books) => {
+                (books.length > 0 ? this.setState({ books, empty: false }) : this.setState({ books: [], empty: true }))
             })
-        })
-      }
+            } else {
+                this.setState({ books: [], empty: true })
+        }
+    }
 
-      
-      render() {
+    render() {
 
-        const { query, books } = this.state
-
-        return(
-            <div>
+    const { query, books, empty } = this.state
+    console.log(empty)
+    return(
+        <div>
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link className="close-search" to='/'>Close</Link>
@@ -50,10 +41,18 @@ class Search extends Component {
                     </div>
                 </div>
             </div>
-            <ListBooks title="Books Found" books={books} />
+            {books.length > 0 ? (
+                <Shelf title="Books Found" books={books} />
+            ) : (
+            <div>
+                <div className="book-top">
+                    <h2>No Books Found</h2>
+                </div>
             </div>
+            )}
+        </div>
         )
-      }
+    }
 }
 
 export default Search
