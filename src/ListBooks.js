@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as BooksAPI from './BooksAPI'
+import Shelf from './Shelf'
 
 class ListBooks extends Component {
 
@@ -9,42 +10,24 @@ class ListBooks extends Component {
         super(props);
     }
 
-    state = {
-        query: ''
-    }
-
     render() {
+
         const { books } = this.props
+        const currentlyReading = books.filter((book) => book.shelf ==='currentlyReading');
+        const wantToRead = books.filter((book) => book.shelf === 'wantToRead');
+        const read = books.filter((book) => book.shelf === 'read');
+
         return (
-            <div className="bookshelf">
-                <h2 className="bookshelf-title">{this.props.title}</h2>
-                <div className="bookshelf-books">
-                    <ol className="books-grid">
-                        {books.map((book) => (
-                        <li key={book.id}>
-                            <div className="book">
-                                <div className="book-top">
-                                    <div className="book-cover" style={{
-                                        width: 128,
-                                        height: 192,
-                                        backgroundImage:`url("${book.imageLinks.thumbnail}")`
-                                    }}></div>
-                                    <div className="book-shelf-changer">
-                                    <select>
-                                        <option value="move" disabled>Move to...</option>
-                                        <option value="currentlyReading">Currently Reading</option>
-                                        <option value="wantToRead">Want to Read</option>
-                                        <option value="read">Read</option>
-                                        <option value="none">None</option>
-                                    </select>
-                                    </div>
-                                </div>
-                                    <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{book.authors}</div>
-                            </div>
-                        </li>
-                        ))}
-                    </ol>
+            <div>
+                <div className="list-books">
+                    <div className="list-books-title">
+                        <h1>MyReads</h1>
+                    </div>
+                </div>
+                <div className="list-books-content">
+                <Shelf books={currentlyReading} title={"Currently Reading"}/>
+                <Shelf books={wantToRead} title={"Want To Read"}/>
+                <Shelf books={read} title={"Read"}/>
                 </div>
             </div>
         )

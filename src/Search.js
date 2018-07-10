@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
+import ListBooks from './ListBooks'
 import './App.css'
 
 class Search extends Component {
@@ -9,40 +11,47 @@ class Search extends Component {
     }
 
     state = {
+        books: [],
         query: ''
       }
 
       updateQuery = (query) => {
         this.setState({ query: query.trim() })
+        this.onSearch(query);
       }
 
       clearQuery = () => {
         this.setState({ query: ''})
       }
 
+      onSearch = (query) => {
+        BooksAPI.search(query).then((books) => {
+            this.setState({
+                books: books
+            })
+        })
+      }
 
+      
       render() {
 
-        const { query } = this.state
-        let showingBooks
+        const { query, books } = this.state
 
-        // if (query) {
-        // const match = new RegExp(escapeRegExp(query), 'i')
-        // showingBooks = books.filter((book) => match.test(book.name))
-        // } else {
-        // showingBooks = books
-        // }
         return(
+            <div>
             <div className="search-books">
-            <div className="search-books-bar">
-              <Link className="close-search" to='/'>Close</Link>
-              <div className="search-books-input-wrapper">
-                <input type="text" placeholder="Search by title or author"
-                value={query}
-                onChange={(e) => this.updateQuery(e.target.value)}/>
-              </div>
-              </div>
-              </div>
+                <div className="search-books-bar">
+                    <Link className="close-search" to='/'>Close</Link>
+                    <div className="search-books-input-wrapper">
+                        <input type="text" placeholder="Search by title or author"
+                        value={query}
+                        onChange={(e) => this.updateQuery(e.target.value)}
+                        />
+                    </div>
+                </div>
+            </div>
+            <ListBooks title="Books Found" books={books} />
+            </div>
         )
       }
 }

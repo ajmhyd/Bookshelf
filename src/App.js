@@ -18,29 +18,16 @@ class BooksApp extends Component {
 
   render() {
     const { books } = this.state;
-    const currentlyReading = books.filter((book) => book.shelf ==='currentlyReading');
-    const wantToRead = books.filter((book) => book.shelf === 'wantToRead');
-    const read = books.filter((book) => book.shelf === 'read');
+
     return (
       <div className="app">
-      <div className="list-books">
-        <div className="list-books-title">
-            <h1>MyReads</h1>
-        </div>
-      </div>
-      <Route exact path='/' render={() => (
-        <div className="list-books-content">
-          <ListBooks title="Currently Reading" books={currentlyReading} />
-          <ListBooks title="Want To Read" books={wantToRead} />
-          <ListBooks title="Read" books={read} />
-            <div className="open-search">
-              < Link to='/search'>Add a book</Link>
-            </div>
-        </div>
-      )}/>
-      <Route exact path="/search" render={() => (
+        <ListBooks books={books} />
+        <Route exact path="/search" render={() => (
         <Search />
         )}/>
+        <div className="open-search">
+          <Link to='/search'>Add a book</Link>
+        </div>
       </div>
     )
   }
