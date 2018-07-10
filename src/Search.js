@@ -12,7 +12,7 @@ class Search extends Component {
     }
 
     updateQuery = (query) => {
-        this.setState({ query: query.trim() })
+        this.setState({ query })
 
         if(query) {
             BooksAPI.search(query).then((books) => {
@@ -26,6 +26,7 @@ class Search extends Component {
     render() {
 
     const { query, books } = this.state
+    const { moveBook } = this.props
 
     return(
         <div>
@@ -41,7 +42,7 @@ class Search extends Component {
                 </div>
             </div>
             {books.length > 0 ? (
-                <Shelf title="Books Found" books={books} />
+                <Shelf title="Books Found" books={books} moveBook={moveBook}/>
             ) : (
             <div>
                 <div className="book-top">

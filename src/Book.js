@@ -4,19 +4,27 @@ class Book extends Component {
 
     render() {
 
-        const { book } = this.props
+        const { book, moveBook } = this.props
+        let backGround = ''
+
+        if(this.props.book.hasOwnProperty("imageLinks")) {
+            backGround = `url("${book.imageLinks.thumbnail}")`;
+        } else {
+            backGround = '#aaa'
+        }
+
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover" style={{
                         width: 128,
                         height: 192,
-                        backgroundImage:`url("${book.imageLinks.thumbnail}")`
+                        backgroundImage: backGround
                         }}>
                     </div>
                     <div className="book-shelf-changer">
-                        <select>
-                            <option value="move" disabled>Move to...</option>
+                        <select value={book.shelf} onChange={(e) => moveBook(book, e.target.value)}>
+                            <option value="move">Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>

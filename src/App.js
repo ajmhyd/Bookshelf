@@ -17,16 +17,25 @@ class BooksApp extends Component {
     })
 }
 
+moveBook = (book, newShelf) => {
+  BooksAPI.update(book, newShelf).then(() => {
+    book.shelf = newShelf;
+    let booksOnShelf = this.state.books.filter(books => books.id !== book.id);
+    booksOnShelf.push(book);
+    this.setState({ books : booksOnShelf });
+  })
+}
+
   render() {
     const { books } = this.state;
 
     return (
       <div className="app">
       <Route exact path='/' render={() => (
-        <ListBooks books={books} />
+        <ListBooks books={books} moveBook={this.moveBook}/>
       )}/>
         <Route exact path="/search" render={() => (
-        <Search />
+        <Search moveBook={this.moveBook} />
         )}/>
         <div className="open-search">
           <Link to='/search'>Add a book</Link>
