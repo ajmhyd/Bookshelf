@@ -8,7 +8,7 @@ import ListBooks from './ListBooks'
 class BooksApp extends Component {
 
   state = {
-    books: [],
+    books: []
   }
 
   componentDidMount() {

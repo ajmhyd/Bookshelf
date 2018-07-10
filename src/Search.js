@@ -27,7 +27,7 @@ class Search extends Component {
 
     const { query, books } = this.state
     const { moveBook } = this.props
-
+        console.log(books.shelf);
     return(
         <div>
             <div className="search-books">
