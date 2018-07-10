@@ -8,8 +8,7 @@ class Search extends Component {
 
     state = {
         books: [],
-        query: '',
-        empty: false
+        query: ''
     }
 
     updateQuery = (query) => {
@@ -17,17 +16,17 @@ class Search extends Component {
 
         if(query) {
             BooksAPI.search(query).then((books) => {
-                (books.length > 0 ? this.setState({ books, empty: false }) : this.setState({ books: [], empty: true }))
+                (books.length > 0 ? this.setState({ books }) : this.setState({ books: [] }))
             })
             } else {
-                this.setState({ books: [], empty: true })
+                this.setState({ books: [] })
         }
     }
 
     render() {
 
-    const { query, books, empty } = this.state
-    console.log(empty)
+    const { query, books } = this.state
+
     return(
         <div>
             <div className="search-books">
