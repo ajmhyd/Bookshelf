@@ -2,7 +2,7 @@
 A React application for organizing your book collection into three categories.
 
 ## Prerequisites
-* Node.js [Node.js](https://nodejs.org/en/)
+* [Node.js](https://nodejs.org/en/)
 
 ## Installation instructions
 1. Clone the repository
