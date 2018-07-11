@@ -35,7 +35,7 @@ moveBook = (book, newShelf) => {
         <ListBooks books={books} moveBook={this.moveBook}/>
       )}/>
         <Route exact path="/search" render={() => (
-        <Search moveBook={this.moveBook} />
+        <Search moveBook={this.moveBook} myReads={books} />
         )}/>
         <div className="open-search">
           <Link to='/search'>Add a book</Link>

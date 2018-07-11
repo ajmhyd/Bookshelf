@@ -23,11 +23,24 @@ class Search extends Component {
         }
     }
 
+    onShelf(books) {
+        let { myReads } = this.props
+        for (let book of books) {
+            for (let read of myReads) {
+                if (read.id === book.id) {
+                    book.shelf = read.shelf
+                }
+            }
+        }
+        return books
+    }
+
     render() {
 
     const { query, books } = this.state
     const { moveBook } = this.props
-        console.log(books.shelf);
+
+
     return(
         <div>
             <div className="search-books">
@@ -42,7 +55,7 @@ class Search extends Component {
                 </div>
             </div>
             {books.length > 0 ? (
-                <Shelf title="Books Found" books={books} moveBook={moveBook}/>
+                <Shelf title="Books Found" books={this.onShelf(books)} moveBook={moveBook}/>
             ) : (
             <div>
                 <div className="book-top">
