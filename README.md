@@ -1,5 +1,5 @@
 # BookShelf Project
-A React application for organizing your book collection into three categories.
+Built a responsive web application that allows users to select and categorize books into a virtual bookshelf. Leveraged React to support a dynamic user interface that interacts with an API server and client library.
 
 ## Prerequisites
 * [Node.js](https://nodejs.org/en/)
