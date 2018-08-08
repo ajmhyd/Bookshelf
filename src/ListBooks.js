@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Shelf from './Shelf'
+import PropTypes from 'prop-types'
 class ListBooks extends Component {
 
     render() {
-
+        //filter books by shelf
         const { books, moveBook } = this.props
         const currentlyReading = books.filter((book) => book.shelf ==='currentlyReading');
         const wantToRead = books.filter((book) => book.shelf === 'wantToRead');
@@ -13,7 +14,7 @@ class ListBooks extends Component {
             <div>
                 <div className="list-books">
                     <div className="list-books-title">
-                        <h1>MyReads</h1>
+                        <h1>BookShelf</h1>
                     </div>
                 </div>
                 <div className="list-books-content">
@@ -25,5 +26,10 @@ class ListBooks extends Component {
         )
     }
 }
+//type checking
+ListBooks.propTypes = {
+    books: PropTypes.array,
+    moveBook: PropTypes.func
+};
 
 export default ListBooks
