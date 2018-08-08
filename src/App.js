@@ -10,13 +10,14 @@ class BooksApp extends Component {
   state = {
     books: []
   }
-
+  //get books
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
         this.setState({ books })
     })
-}
+  }
 
+  //move book from different shelfs
 moveBook = (book, newShelf) => {
   BooksAPI.update(book, newShelf).then(() => {
     book.shelf = newShelf;
