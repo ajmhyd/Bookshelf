@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Shelf from './Shelf'
+import PropTypes from 'prop-types'
 
 class Search extends Component {
 
@@ -10,7 +11,7 @@ class Search extends Component {
         books: [],
         query: ''
     }
-
+    //update query
     updateQuery = (query) => {
         this.setState({ query })
 
@@ -22,7 +23,7 @@ class Search extends Component {
                 this.setState({ books: [] })
         }
     }
-
+    //books already on shelf
     onShelf(books) {
         let { myReads } = this.props
         for (let book of books) {
@@ -39,7 +40,6 @@ class Search extends Component {
 
     const { query, books } = this.state
     const { moveBook } = this.props
-
 
     return(
         <div>
@@ -67,5 +67,11 @@ class Search extends Component {
         )
     }
 }
+
+//type checking
+Search.propTypes = {
+    moveBook: PropTypes.func,
+    myReads: PropTypes.array
+};
 
 export default Search
