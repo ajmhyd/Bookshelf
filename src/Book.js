@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 
 class Book extends Component {
 
     render() {
 
         const { book, moveBook } = this.props
-        let backGround = ''
+        let backGround = '';
 
         if(this.props.book.hasOwnProperty("imageLinks")) {
             backGround = `url("${book.imageLinks.thumbnail}")`;
@@ -38,5 +39,11 @@ class Book extends Component {
         )
     }
 }
+
+//type checking
+Book.propTypes = {
+    books: PropTypes.array,
+    moveBook: PropTypes.func
+};
 
 export default Book
