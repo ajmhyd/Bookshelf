@@ -12,7 +12,6 @@ Built a responsive web application that allows users to select and categorize bo
 
 `$ git clone https://github.com/ajmhyd/Bookshelf.git`
 
-
 2. Move into the cloned directory
 
 `$ cd Bookshelf`
