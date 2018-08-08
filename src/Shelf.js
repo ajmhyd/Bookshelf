@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Book from './Book'
+import PropTypes from 'prop-types'
 
 class Shelf extends Component {
 
@@ -23,5 +24,11 @@ class Shelf extends Component {
         )
     }
 }
+
+//type checking
+Shelf.propTypes = {
+    books: PropTypes.array,
+    moveBook: PropTypes.func
+};
 
 export default Shelf
