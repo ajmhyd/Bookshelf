@@ -7,7 +7,7 @@ class Book extends Component {
 
         const { book, moveBook } = this.props
         let backGround = '';
-
+        //check for background image
         if(this.props.book.hasOwnProperty("imageLinks")) {
             backGround = `url("${book.imageLinks.thumbnail}")`;
         } else {

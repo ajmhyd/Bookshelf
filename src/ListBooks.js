@@ -18,9 +18,9 @@ class ListBooks extends Component {
                     </div>
                 </div>
                 <div className="list-books-content">
-                <Shelf books={currentlyReading} title={"Currently Reading"} moveBook={moveBook}/>
-                <Shelf books={wantToRead} title={"Want To Read"} moveBook={moveBook}/>
-                <Shelf books={read} title={"Read"} moveBook={moveBook}/>
+                    <Shelf books={currentlyReading} title={"Currently Reading"} moveBook={moveBook}/>
+                    <Shelf books={wantToRead} title={"Want To Read"} moveBook={moveBook}/>
+                    <Shelf books={read} title={"Read"} moveBook={moveBook}/>
                 </div>
             </div>
         )
